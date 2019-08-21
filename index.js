@@ -32,6 +32,6 @@ app.post('/signin', signin)
 app.use('/api', verifyToken)
 app.use('/api/notes', notesRoute)
 
-app.listen(process.env.SERVER_PORT, () => {
-    console.log(`App is listening on port: ${process.env.SERVER_PORT}!`);
+app.listen(process.env.PORT, () => {
+    console.log(`App is listening on port: ${process.env.PORT}!`);
 })

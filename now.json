@@ -1,0 +1,23 @@
+{
+    "version": 2,
+    "builds": [{ "src": "index.js", "use": "@now/node-server" }],
+    "routes": [
+      {
+        "src": "/signin",
+        "dest": "/index.js",
+        "methods": ["POST"]
+      },
+      {
+        "src": "/signup",
+        "dest": "/index.js",
+        "methods": ["POST"]
+      }
+    ],
+    "build": {
+      "env": {
+        "DB_URL": "@db-url",
+        "SECRET_KEY": "@secret-key",
+        "SERVER_PORT": "@server-port"
+      }
+    } 
+  }

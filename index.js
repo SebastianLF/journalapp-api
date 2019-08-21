@@ -2,7 +2,6 @@ const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
 const cors = require('cors')
-const morgan = require('morgan')
 const notesRoute = require('./routes/notes')
 const { verifyToken, signup, signin } = require('./utils/auth')
 

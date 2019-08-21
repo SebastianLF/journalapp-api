@@ -7,8 +7,9 @@ const morgan = require('morgan')
 const notesRoute = require('./routes/notes')
 const { verifyToken, signup, signin } = require('./utils/auth')
 
+
 // Handles env variables
-dotenv.config({ debug: true })
+if(process.env.NODE_ENV == 'development') dotenv.config({ debug: true })
 
 // Connect to MONGODB
 mongoose.connect(process.env.DB_URL, {useNewUrlParser: true}, () => {
@@ -20,7 +21,8 @@ mongoose.connect(process.env.DB_URL, {useNewUrlParser: true}, () => {
 mongoose.set('useCreateIndex', true);
 
 app.use(cors())
-app.use(morgan(':method :url :status'))
+
+if(process.env.NODE_ENV == 'development') app.use(morgan(':method :url :status'))
 
 // Parse JSON body
 app.use(express.json())

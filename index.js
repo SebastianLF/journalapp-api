@@ -1,7 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
-const dotenv = require('dotenv')
 const cors = require('cors')
 const morgan = require('morgan')
 const notesRoute = require('./routes/notes')
@@ -9,7 +8,7 @@ const { verifyToken, signup, signin } = require('./utils/auth')
 
 
 // Handles env variables
-if(process.env.NODE_ENV == 'development') dotenv.config({ debug: true })
+if(process.env.NODE_ENV == 'development') require('dotenv').config({ debug: true })
 
 // Connect to MONGODB
 mongoose.connect(process.env.DB_URL, {useNewUrlParser: true}, () => {
@@ -22,7 +21,7 @@ mongoose.set('useCreateIndex', true);
 
 app.use(cors())
 
-if(process.env.NODE_ENV == 'development') app.use(morgan(':method :url :status'))
+if(process.env.NODE_ENV == 'development') app.use(require('morgan')(':method :url :status'))
 
 // Parse JSON body
 app.use(express.json())

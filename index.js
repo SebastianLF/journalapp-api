@@ -7,20 +7,20 @@ const { verifyToken, signup, signin } = require('./utils/auth')
 
 
 // Handles env variables
-if(process.env.NODE_ENV == 'development') require('dotenv').config({ debug: true })
+if(process.env.NODE_ENV !== 'production') require('dotenv').config({ debug: true })
 
 // Connect to MONGODB
 mongoose.connect(process.env.DB_URL, {useNewUrlParser: true}, () => {
-    console.log('Connected to db!');
+    console.log('Connected to db!')
 })
 
 // to avoid getting error 
 // (node:4378) DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead.
-mongoose.set('useCreateIndex', true);
+mongoose.set('useCreateIndex', true)
 
 app.use(cors())
 
-if(process.env.NODE_ENV == 'development') app.use(require('morgan')(':method :url :status'))
+if(process.env.NODE_ENV == 'development') app.use(require('morgan')('dev'))
 
 // Parse JSON body
 app.use(express.json())

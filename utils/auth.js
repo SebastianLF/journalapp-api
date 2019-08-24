@@ -70,7 +70,7 @@ exports.signin = async (req, res) => {
         const userFound = await User.findOne(user)
             .exec()
 
-        if (!userFound) return res.status(400).send({ message: 'Wrong username or password' })
+        if (!userFound) return res.status(200).send({ message: 'Wrong username or password. Please retry.' })
 
         const token = createToken(userFound.toJSON())
 

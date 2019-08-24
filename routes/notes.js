@@ -5,6 +5,7 @@ const User = require('../models/users')
 // ----------------- NOTES ----------------- //
 Router.route('/')
     .get(async (req, res) => {
+        
         const notes = await User.find({ _id: req.user._id }, '-_id notes')
         
         return res.status(200).send(notes)
@@ -23,7 +24,7 @@ Router.route('/')
             return res.status(200).send(userFound.notes)
 
         } catch(e) {
-
+            
             return res.status(400).send(e)
 
         }
